@@ -6,6 +6,9 @@
   <title>JGM Group — Custom Homes & General Contracting</title>
   <meta id="metaDesc" name="description" content="JGM Group builds premium custom homes, commercial renovations, and full-scope general contracting. Get an instant project estimate and book a consultation." />
 
+  <!-- Favicon: the JGM logo mark (amber square + triangle) as an inline SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23f59e0b'/%3E%3Cpath d='M16 7L26 25H6Z' fill='%23030712'/%3E%3C/svg%3E" />
+
   <!-- Tailwind CSS (official Play CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -43,9 +46,30 @@
     }
     .hazard { background-image: repeating-linear-gradient(-45deg, #f59e0b 0 10px, #030712 10px 20px); }
     section[id] { scroll-margin-top: 84px; }
-    .reel-track { scrollbar-width: none; -ms-overflow-style: none; scroll-snap-type: x mandatory; }
+    .reel-track { display:flex; align-items:flex-start; gap:1rem; overflow-x:auto; padding:0 1.25rem 1rem; scrollbar-width: none; -ms-overflow-style: none; scroll-snap-type: x mandatory; }
+    @media (min-width:1024px){ .reel-track { padding-left:2rem; padding-right:2rem; } }
     .reel-track::-webkit-scrollbar { display: none; }
-    .reel-card { scroll-snap-align: start; }
+    .reel-card {
+      scroll-snap-align: start;
+      position: relative; display: block; flex: 0 0 auto;
+      width: 74vw; max-width: 300px; aspect-ratio: 9 / 16;
+      overflow: hidden; border: 1px solid #1f2937; border-radius: 0.75rem;
+      background-color: #030712; color:#fff; text-decoration:none;
+    }
+    @media (min-width: 640px) { .reel-card { width: 280px; } }
+    .reel-media { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; background-size:cover; background-position:center; }
+    .reel-cover { position:absolute; inset:0; z-index:1; }
+    .reel-scrim-top { position:absolute; left:0; right:0; top:0; height:6rem; background:linear-gradient(to bottom, rgba(0,0,0,.7), transparent); pointer-events:none; }
+    .reel-scrim-bottom { position:absolute; left:0; right:0; bottom:0; height:8rem; background:linear-gradient(to top, rgba(0,0,0,.85), transparent); pointer-events:none; }
+    .reel-play { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.85); pointer-events:none; }
+    .reel-play svg { width:3.5rem; height:3.5rem; }
+    .reel-badge { position:absolute; left:.75rem; top:.75rem; display:inline-flex; align-items:center; gap:.375rem; border:1px solid rgba(245,158,11,.4); background:rgba(0,0,0,.5); color:#f59e0b; border-radius:9999px; padding:.25rem .75rem; font-family:'Oswald',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.1em; backdrop-filter:blur(4px); pointer-events:none; }
+    .reel-badge svg { width:12px; height:12px; }
+    .reel-bottom { position:absolute; left:0; right:0; bottom:0; padding:1rem; z-index:2; }
+    .reel-caption { font-family:'Sora',sans-serif; font-weight:700; font-size:.875rem; line-height:1.2; margin:0; color:#fff; }
+    .reel-follow { margin-top:.625rem; display:inline-flex; align-items:center; gap:.375rem; background:rgba(255,255,255,.1); color:#fff; border-radius:9999px; padding:.375rem .75rem; font-family:'Oswald',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.1em; text-decoration:none; }
+    .reel-follow:hover { background:#f59e0b; color:#000; }
+    .reel-follow svg { width:14px; height:14px; }
     .glow-amber { box-shadow: 0 0 0 1px rgba(245,158,11,0.35), 0 18px 50px -12px rgba(245,158,11,0.35); }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -171,7 +195,7 @@
           </div>
         </div>
       </div>
-      <div id="reelTrack" class="reel-track flex snap-x gap-4 overflow-x-auto px-5 pb-4 lg:px-8" role="list" aria-label="On-site progress video reels"><!-- rendered from config --></div>
+      <div id="reelTrack" class="reel-track" role="list" aria-label="On-site progress video reels"><!-- rendered from config --></div>
     </section>
 
     <!-- ============================ ABOUT ============================ -->
@@ -403,12 +427,8 @@
         defaultSqft: 2400, rangeBand: 0.12
       },
       reels: [
-        { type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', caption: 'Riverbend Custom Residence', stage: 'Framing' },
-        { type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', caption: 'Market St. Retail Buildout', stage: 'Demolition' },
-        { type: 'link', permalink: 'https://instagram.com/', poster: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=70', caption: 'Hillcrest Estate', stage: 'Finish Carpentry' },
-        { type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', caption: 'Summit Medical Suite', stage: 'MEP Rough-In' },
-        { type: 'link', permalink: 'https://instagram.com/', poster: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=70', caption: 'Lakeshore Modern', stage: 'Foundation' },
-        { type: 'video', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', caption: 'Warehouse Conversion', stage: 'Steel Erection' }
+        { type: 'video', src: '', caption: 'Replace with your project name', stage: 'Stage (e.g. Framing)' },
+        { type: 'link', permalink: '', poster: '', caption: 'Replace with your project name', stage: 'Stage (e.g. Finish)' }
       ]
     };
 
@@ -427,6 +447,18 @@
     const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) =>
       ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     const resolve = (obj, path) => path.split('.').reduce((o, k) => (o == null ? o : o[k]), obj);
+
+    // Inline social glyphs — Lucide removed brand icons, so we ship our own.
+    function socialSvg(name, px) {
+      const s = px || 20;
+      const open = `<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">`;
+      const paths = {
+        instagram: '<rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>',
+        linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>',
+        facebook: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>'
+      };
+      return open + (paths[name] || '') + '</svg>';
+    }
 
     /* ---- Simple text/href binding via [data-bind] / [data-bind-href] ---- */
     function bindText(cfg) {
@@ -492,34 +524,28 @@
 
     function renderReels(cfg) {
       const track = document.getElementById('reelTrack');
+      const ig = (cfg.social && cfg.social.instagram) || '#';
       track.innerHTML = (cfg.reels || []).map((reel) => {
-        const badges = `
-          <div class="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/70 to-transparent"></div>
-          <span class="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-amber-500/40 bg-black/50 px-3 py-1 font-label text-[11px] uppercase tracking-widest text-amber-500 backdrop-blur-sm">
-            <i data-lucide="radio" class="h-3 w-3"></i> ${esc(reel.stage)}
-          </span>
-          <div class="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/85 to-transparent"></div>
-          <div class="absolute inset-x-0 bottom-0 p-4">
-            <p class="font-display text-sm font-bold leading-tight text-white">${esc(reel.caption)}</p>
-            <a href="${esc((cfg.social && cfg.social.instagram) || '#')}" target="_blank" rel="noopener" class="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 font-label text-[11px] uppercase tracking-widest text-white backdrop-blur-md transition-colors hover:bg-amber-500 hover:text-black">
-              <i data-lucide="instagram" class="h-3.5 w-3.5"></i> Follow on Instagram
-            </a>
-          </div>`;
-        const shell = 'reel-card group relative aspect-[9/16] w-[74vw] max-w-[300px] shrink-0 overflow-hidden rounded-xl border border-gray-800 bg-gray-950 sm:w-[280px]';
-
-        if (reel.type === 'link') {
-          return `<a href="${esc(reel.permalink || '#')}" target="_blank" rel="noopener" role="listitem" class="${shell} block" aria-label="${esc(reel.caption)} — open on Instagram">
-            <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('${esc(reel.poster)}')"></div>
-            <span class="pointer-events-none absolute inset-0 flex items-center justify-center text-white/90"><i data-lucide="play-circle" class="h-14 w-14"></i></span>
-            ${badges}
-          </a>`;
-        }
-        return `<div role="listitem" class="${shell}">
-          <video class="reel-video h-full w-full object-cover" loop muted playsinline preload="metadata" aria-label="${esc(reel.caption)} — ${esc(reel.stage)}">
-            <source src="${esc(reel.src)}" type="video/mp4" />
-          </video>
-          <span class="reel-play pointer-events-none absolute inset-0 flex items-center justify-center text-white/80 transition-opacity"><i data-lucide="play-circle" class="h-14 w-14"></i></span>
-          ${badges}
+        const isLink = reel.type === 'link';
+        const media = isLink
+          ? (reel.poster ? `<div class="reel-media" style="background-image:url('${esc(reel.poster)}')"></div>` : '')
+          : `<video class="reel-media reel-video" loop muted playsinline preload="metadata" aria-label="${esc(reel.caption)} — ${esc(reel.stage)}">${reel.src ? `<source src="${esc(reel.src)}" type="video/mp4" />` : ''}</video>`;
+        // Link reels: a full-card "stretched" anchor opens the reel. It's a sibling
+        // of the Follow link (never nested), so the HTML stays valid.
+        const cover = isLink
+          ? `<a class="reel-cover" href="${esc(reel.permalink || '#')}" target="_blank" rel="noopener" aria-label="${esc(reel.caption)} — open on Instagram"></a>`
+          : '';
+        return `<div role="listitem" class="reel-card">
+          ${media}
+          <div class="reel-scrim-top"></div>
+          <span class="reel-badge"><i data-lucide="radio"></i> ${esc(reel.stage)}</span>
+          <span class="reel-play"><i data-lucide="circle-play"></i></span>
+          <div class="reel-scrim-bottom"></div>
+          ${cover}
+          <div class="reel-bottom">
+            <p class="reel-caption">${esc(reel.caption)}</p>
+            <a href="${esc(ig)}" target="_blank" rel="noopener" class="reel-follow">${socialSvg('instagram', 14)} Follow on Instagram</a>
+          </div>
         </div>`;
       }).join('');
     }
@@ -546,7 +572,7 @@
       const socialItems = [ ['instagram', s.instagram], ['linkedin', s.linkedin], ['facebook', s.facebook] ].filter(([, url]) => url);
       const socialHtml = (extra) => socialItems.map(([icon, url]) => `
         <a href="${esc(url)}" target="_blank" rel="noopener" aria-label="${icon}" class="text-gray-400 transition-colors hover:text-amber-500 ${extra}">
-          <i data-lucide="${icon}" class="h-5 w-5" aria-hidden="true"></i>
+          ${socialSvg(icon, 20)}
         </a>`).join('');
       document.getElementById('socialRow').innerHTML = socialHtml('');
       document.getElementById('footerSocial').innerHTML = socialHtml('');
@@ -817,6 +843,7 @@
       wireForm(cfg);
       if (window.lucide && typeof lucide.createIcons === 'function') lucide.createIcons();
       observeReels();
+      console.log('%cJGM site build: reels-hardened-2026-07', 'color:#f59e0b;font-weight:bold');
     });
   </script>
 </body>
