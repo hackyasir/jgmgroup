@@ -81,11 +81,7 @@
   },
 
   "reels": [
-    { "type": "video", "src": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",   "caption": "Riverbend Custom Residence", "stage": "Framing" },
-    { "type": "video", "src": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",  "caption": "Market St. Retail Buildout", "stage": "Demolition" },
-    { "type": "link",  "permalink": "https://instagram.com/", "poster": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=70", "caption": "Hillcrest Estate", "stage": "Finish Carpentry" },
-    { "type": "video", "src": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", "caption": "Summit Medical Suite", "stage": "MEP Rough-In" },
-    { "type": "link",  "permalink": "https://instagram.com/", "poster": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=70", "caption": "Lakeshore Modern", "stage": "Foundation" },
-    { "type": "video", "src": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",      "caption": "Warehouse Conversion", "stage": "Steel Erection" }
+    { "type": "video", "src": "", "caption": "Replace with your project name", "stage": "Stage (e.g. Framing)" },
+    { "type": "link", "permalink": "", "poster": "", "caption": "Replace with your project name", "stage": "Stage (e.g. Finish)" }
   ]
 }
