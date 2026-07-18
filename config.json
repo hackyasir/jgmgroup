@@ -1,0 +1,91 @@
+{
+  "brand": {
+    "markPrimary": "JGM",
+    "markAccent": "GROUP",
+    "name": "JGM Group",
+    "tagline": "Custom Homes & General Contracting"
+  },
+
+  "contact": {
+    "phone": "(555) 012-3456",
+    "phoneHref": "tel:+15550123456",
+    "email": "build@jgmgroup.com",
+    "address": {
+      "line1": "1420 Foundry Avenue",
+      "line2": "Suite 300",
+      "city": "Toronto",
+      "province": "ON",
+      "postal": "M5V 2T6"
+    },
+    "hours": "Mon\u2013Fri, 7:00 AM \u2013 5:00 PM",
+    "serviceArea": "Greater Toronto Area & Southern Ontario"
+  },
+
+  "credentials": {
+    "license": "GC-4471",
+    "bonded": true,
+    "insured": true,
+    "established": 2004
+  },
+
+  "social": {
+    "instagram": "https://instagram.com/",
+    "linkedin": "https://linkedin.com/",
+    "facebook": "https://facebook.com/"
+  },
+
+  "forms": {
+    "web3formsKey": "",
+    "endpoint": "",
+    "subject": "New project enquiry \u2014 JGM Group website"
+  },
+
+  "about": {
+    "body": [
+      "For two decades, JGM Group has built homes and commercial spaces across the Front Range that are engineered to last. We run every project with a single accountable team \u2014 from the first survey stake to the final walkthrough.",
+      "No handoffs to unknown subs, no surprise change orders buried in fine print. Just disciplined scheduling, honest budgets, and craftsmanship you can stand behind for decades."
+    ],
+    "stats": [
+      { "value": "20+",  "label": "Years building" },
+      { "value": "450+", "label": "Projects delivered" },
+      { "value": "3.2M", "label": "Sq. ft. completed" },
+      { "value": "98%",  "label": "On-time completion" }
+    ],
+    "process": [
+      { "title": "Consult & scope", "description": "We walk the site, understand the vision, and define a clear scope before anyone quotes a number." },
+      { "title": "Plan & price", "description": "Detailed drawings, a firm itemized budget, and a schedule you can hold us to." },
+      { "title": "Build & manage", "description": "One project lead runs the trades, permits, and inspections start to finish." },
+      { "title": "Walk & warranty", "description": "A full walkthrough, punch list, and a written warranty on our work." }
+    ]
+  },
+
+  "services": [
+    { "icon": "home",       "title": "Custom Homes",           "description": "Architect-led builds tailored to the site and the family. From foundation to finish carpentry, executed by a single accountable team." },
+    { "icon": "building-2", "title": "Commercial Renovations", "description": "Tenant improvements, retail buildouts, and adaptive reuse \u2014 sequenced to keep your business running while the work gets done." },
+    { "icon": "hard-hat",   "title": "General Contracting",    "description": "Full-scope project management \u2014 permits, trades, scheduling, and inspections \u2014 under one contract and one point of contact." }
+  ],
+
+  "estimator": {
+    "types": [
+      { "label": "Custom Home \u2014 new construction",     "rate": 350 },
+      { "label": "Commercial \u2014 buildout / renovation", "rate": 220 },
+      { "label": "Residential Renovation",                  "rate": 180 }
+    ],
+    "tiers": [
+      { "label": "Standard", "mult": 1.0 },
+      { "label": "Premium",  "mult": 1.3 },
+      { "label": "Luxury",   "mult": 1.7 }
+    ],
+    "defaultSqft": 2400,
+    "rangeBand": 0.12
+  },
+
+  "reels": [
+    { "type": "video", "src": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",   "caption": "Riverbend Custom Residence", "stage": "Framing" },
+    { "type": "video", "src": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",  "caption": "Market St. Retail Buildout", "stage": "Demolition" },
+    { "type": "link",  "permalink": "https://instagram.com/", "poster": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=70", "caption": "Hillcrest Estate", "stage": "Finish Carpentry" },
+    { "type": "video", "src": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", "caption": "Summit Medical Suite", "stage": "MEP Rough-In" },
+    { "type": "link",  "permalink": "https://instagram.com/", "poster": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=70", "caption": "Lakeshore Modern", "stage": "Foundation" },
+    { "type": "video", "src": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",      "caption": "Warehouse Conversion", "stage": "Steel Erection" }
+  ]
+}
