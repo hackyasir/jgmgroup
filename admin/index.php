@@ -28,13 +28,18 @@ $CONFIG_PATH = __DIR__ . '/../config.json';   // config.json lives one level up 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json; charset=utf-8');
 
-    // Same-origin guard (defence-in-depth on top of Basic Auth)
-    $host    = $_SERVER['HTTP_HOST'] ?? '';
+    // Same-origin guard (defence-in-depth on top of Basic Auth).
+    // Compare host WITHOUT port, so it works on any port (e.g. local php -S :8000).
+    $reqHost = strtolower(preg_replace('/:\d+$/', '', $_SERVER['HTTP_HOST'] ?? ''));
     $origin  = $_SERVER['HTTP_ORIGIN'] ?? '';
     $referer = $_SERVER['HTTP_REFERER'] ?? '';
+    $matches = function ($url) use ($reqHost) {
+        $h = parse_url($url, PHP_URL_HOST);
+        return $h !== null && strtolower($h) === $reqHost;
+    };
     $sameOrigin = true;
-    if ($origin !== '')       $sameOrigin = (parse_url($origin, PHP_URL_HOST) === $host);
-    elseif ($referer !== '')  $sameOrigin = (parse_url($referer, PHP_URL_HOST) === $host);
+    if ($origin !== '')       $sameOrigin = $matches($origin);
+    elseif ($referer !== '')  $sameOrigin = $matches($referer);
     if (!$sameOrigin) {
         http_response_code(403);
         echo json_encode(['success' => false, 'message' => 'Cross-origin request blocked.']);
@@ -58,9 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $dir = dirname($CONFIG_PATH);
 
-    // Back up the current file before overwriting
+    // Back up the current file before overwriting, keeping only the 10 newest.
     if (is_file($CONFIG_PATH)) {
         @copy($CONFIG_PATH, $dir . '/config.backup-' . date('Ymd-His') . '.json');
+        $backups = glob($dir . '/config.backup-*.json');
+        if ($backups && count($backups) > 10) {
+            sort($backups); // timestamped filenames sort oldest-first
+            foreach (array_slice($backups, 0, count($backups) - 10) as $old) { @unlink($old); }
+        }
     }
 
     // Atomic write: temp file, then rename
@@ -138,7 +148,8 @@ $currentJson = json_encode($current, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUO
         <div class="field"><label>Logo — primary text</label><input id="b_markPrimary" class="inp" /></div>
         <div class="field"><label>Logo — accent text</label><input id="b_markAccent" class="inp" /></div>
         <div class="field"><label>Company name</label><input id="b_name" class="inp" /></div>
-        <div class="field"><label>Tagline</label><input id="b_tagline" class="inp" /></div>
+        <div class="field"><label>Tagline (used in the page title)</label><input id="b_tagline" class="inp" /></div>
+        <div class="field sm:col-span-2"><label>Slogan (shown under the logo)</label><input id="b_slogan" class="inp" /></div>
       </div>
     </section>
 
@@ -340,6 +351,7 @@ $currentJson = json_encode($current, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUO
       $('b_markAccent').value  = b.markAccent || '';
       $('b_name').value        = b.name || '';
       $('b_tagline').value     = b.tagline || '';
+      $('b_slogan').value      = b.slogan || '';
 
       $('c_phone').value       = c.phone || '';
       $('c_phoneHref').value   = c.phoneHref || '';
@@ -393,7 +405,8 @@ $currentJson = json_encode($current, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUO
           markPrimary: $('b_markPrimary').value,
           markAccent:  $('b_markAccent').value,
           name:        $('b_name').value,
-          tagline:     $('b_tagline').value
+          tagline:     $('b_tagline').value,
+          slogan:      $('b_slogan').value
         },
         contact: {
           phone:     $('c_phone').value,
